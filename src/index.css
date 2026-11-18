@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper font-sans font-light text-ink antialiased;
+  }
+  /* iOS Safari hace zoom automático al enfocar un campo con letra menor a 16px
+     y no vuelve atrás al terminar. Con 16px en móvil el zoom no ocurre. */
+  @media (max-width: 767px) {
+    input:not([type='checkbox']):not([type='radio']):not([type='color']):not([type='file']),
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
+  }
+  ::selection {
+    background: #B85D36;
+    color: #F5F2EB;
+  }
+}
+
+@layer components {
+  .label {
+    @apply font-sans text-[10px] uppercase tracking-[0.22em] text-muted;
+  }
+  .title-display {
+    @apply font-display font-normal uppercase tracking-[0.18em] text-ink;
+  }
+  .btn-primary {
+    @apply inline-block bg-ink px-8 py-3 text-[11px] uppercase tracking-[0.2em] text-hueso transition hover:bg-terracota;
+  }
+  .btn-outline {
+    @apply inline-block border border-ink px-8 py-3 text-[11px] uppercase tracking-[0.2em] text-ink transition hover:bg-ink hover:text-hueso;
+  }
+  .link-line {
+    @apply border-b border-ink/30 pb-1 text-[11px] uppercase tracking-[0.2em] transition hover:border-terracota hover:text-terracota;
+  }
+  .field {
+    @apply w-full border border-line bg-hueso px-3 py-2.5 text-sm outline-none transition focus:border-ink;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
